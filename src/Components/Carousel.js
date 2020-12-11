@@ -6,14 +6,15 @@ export class Carousel extends Component {
         super(props)
     
         this.state = {
-             current_card:1
+             current_card:1,
+             current_hint:0            
         }
     }
 
     componentDidMount() {
         let first_card_clone = this.card_container.children[0].cloneNode(true);
         let last_card_clone = this.card_container.children[this.card_container.children.length - 1].cloneNode(true);
-    
+        
         this.card_container.insertBefore(last_card_clone,this.card_container.children[0]);
         this.card_container.append(first_card_clone);
         this.card_container.style.transitionDuration = '0.0s';
@@ -31,7 +32,7 @@ export class Carousel extends Component {
         
             if (this.state.current_card === this.card_container.children.length - 1) {
                 setTimeout(() => {
-                this.card_container.style.transitionDuration = '0.2s';
+                this.card_container.style.transitionDuration = '0.0s';
                 this.card_container.style.transform = `translate(-${350}px)`;
 
                 this.setState({current_card: 1});
@@ -53,10 +54,10 @@ export class Carousel extends Component {
             
                 if (this.state.current_card === 0) {
                     setTimeout(() => {
-                    this.card_container.style.transitionDuration = '0.2s';
-                    this.card_container.style.transform = `translate(-${350 * this.card_container.children.length  -1}px)`;
+                    this.card_container.style.transitionDuration = '0.0s';
+                    this.card_container.style.transform = `translate(-${350 * (this.card_container.children.length -2)}px)`;
     
-                    this.setState({current_card: this.card_container.children.length - 1});
+                    this.setState({current_card: this.card_container.children.length - 2});
                     }, 502);       
                 }        
             })
@@ -69,35 +70,31 @@ export class Carousel extends Component {
         return (
             <div>                
                 <div className='view-port' style={styles.view_port}>
-                    <button onClick={this.handle_previous}>Previous</button>
-                    <button onClick={this.handle_next}>Next</button>                                        
+                    <button onClick={this.handle_previous}>Previous</button> 
+                    <button onClick={this.handle_next}>Next</button>    
                     <div ref= {ref_id => this.card_container = ref_id} className='card-container' style={styles.card_container}>
                         <Card card_number='Images/img1.png' card_desc='this is capitec' card_hint='capitec'/>
                         <Card card_number='Images/img2.png' card_desc=' this is fnb' card_hint='fnb'/>
                         <Card card_number='Images/img3.jpg' card_desc='this is absa' card_hint='absa'/>
                         <Card card_number='Images/img4.png' card_desc='this is standardbank' card_hint='standardbank'/>
                         <Card card_number='Images/img5.png' card_desc='this is nedbank' card_hint='nedbank'/>
-                    </div>                    
+                    </div> 
+                    </div>                   
                 </div>
-            </div>
         )
     }
 }
 
 const styles = {
     view_port : {
-        top: '50%',
-        left: '50%',        
-        width: "350",
-        height: "200",
-        overflow: 'hidden'
+       overflow: 'hidden'
     },
     card_container: {
         display:'flex',
         flexDirection: 'row',
         width: 'fit-content',
+    },
     }
-}
 
 export default Carousel
 

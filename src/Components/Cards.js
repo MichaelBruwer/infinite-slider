@@ -9,7 +9,7 @@ const Card = (props) => {
             <p>{props.card_desc}</p>
             <map name="buttons">
                 <area shape="rect" coords="0,0,175,200" alt="prev" href=''/>
-                <area shape="rect" coords="350,0,175,200" alt="next" href=""/>
+                <area shape="rect" coords="350,0,175,200" alt="next" href=''/>
             </map>
         </div>
         

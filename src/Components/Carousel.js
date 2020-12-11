@@ -16,10 +16,18 @@ export class Carousel extends Component {
         let first_card_clone = this.card_container.children[0].cloneNode(true);
         let last_card_clone = this.card_container.children[this.card_container.children.length - 1].cloneNode(true);
         
+        // let first_tooltip_clone = this.tooltip_container.children[0].cloneNode(true);
+        // let last_tooltip_clone = this.tooltip_container.children[this.tooltip_container.children.length - 1].cloneNode(true);
+        
         this.card_container.insertBefore(last_card_clone,this.card_container.children[0]);
         this.card_container.append(first_card_clone);
         this.card_container.style.transitionDuration = '0.0s';
-        this.card_container.style.transform = `translate(-${350}px)`;           
+        this.card_container.style.transform = `translate(-${350}px)`;  
+        
+        // this.tooltip_container.insertBefore(last_tooltip_clone,this.tooltip_container.children[0]);
+        // this.tooltip_container.append(first_tooltip_clone);
+        // this.tooltip_container.style.transitionDuration = '0.0s';
+        // this.tooltip_container.style.transform = `translate(-${350}px)`;
     }
 
     handle_next = () => {
@@ -33,12 +41,13 @@ export class Carousel extends Component {
             if (this.state.current_card === this.card_container.children.length - 1) {
                 setTimeout(() => {
                 this.card_container.style.transitionDuration = '0.0s';
-                this.card_container.style.transform = `translate(-${350}px)`;
+                this.card_container.style.transform = `translate(-${75}px)`;
 
                 this.setState({current_card: 1});
                 }, 502);       
             }        
-        })
+        } 
+        )
         } else {
         return;
     }
@@ -108,6 +117,12 @@ export class Carousel extends Component {
             return;
         }
     }
+
+    // click1={clickity}
+    // clickity(){
+    //     this.handle_next;
+    //     this.handle_nexttip;
+    //  }
     
     render() {
         return (
@@ -148,7 +163,7 @@ const styles = {
     tooltip_container: {
         display:'flex',
         flexDirection: 'row',
-        width: 'fit-content',   
+        // width: 'fit-content',   
         justifyContent: 'center',          
         border: '2px solid black',
     },
